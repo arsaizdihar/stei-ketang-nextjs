@@ -81,7 +81,7 @@ import {
     //   </footer>
     <div className="flex justify-center py-6 text-sm text-white bg-primary">
         <div className="flex flex-col w-full px-4 text-white md:w-2/3">
-            <div className="w-full font-extrabold font-primary text-7xl">
+            <div className="w-full text-4xl font-extrabold font-primary md:text-7xl">
                 <h1 className="w-full text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
             </div>
 
@@ -91,7 +91,7 @@ import {
             <div className="flex flex-col">
                 <div className="flex flex-row mt-16 mb-12 justify-evenly">
                     <div className="">
-                        <h1 className="text-4xl font-bold font-title">STEI 2021</h1>
+                        <h1 className="text-2xl font-bold tracking-wide md:text-4xl font-title">STEI 2021</h1>
                     </div>
                     
                     <div className="flex flex-row items-center justify-between space-x-8">
@@ -116,7 +116,7 @@ import {
                     </div>
                 </div>
                 <hr className="border-gray-400"/>
-                <p className="w-full mt-12 text-sm font-normal text-center text-white font-primary">©{new Date().getFullYear()} by STEI 2021 ♥ All Rights Reserved</p>
+                <p className="w-full mt-12 text-base font-normal tracking-wide text-center text-white font-primary">©{new Date().getFullYear()} by STEI 2021 ♥ All Rights Reserved</p>
             </div>
         </div>
     </div>
@@ -134,7 +134,7 @@ import {
         className={`block shadow hover:bg-gray-200 duration-300 p-2 rounded group ${className}`}
         href={href}
       >
-        <FontAwesomeIcon icon={icon} className="inline-block w-4 h-4 duration-300 hover:h-6 hover:w-6" />
+        <FontAwesomeIcon icon={icon} className="inline-block w-4 h-4" />
       </a>
     );
   };
