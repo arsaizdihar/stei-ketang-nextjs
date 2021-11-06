@@ -1,3 +1,4 @@
+const { fontFamily } = require('tailwindcss/defaultTheme');
 module.exports = {
   mode: "jit",
   purge: [
@@ -6,7 +7,15 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        primary: ['SF Pro Display', ...fontFamily.sans],
+        title:['Valorant', ...fontFamily.sans]
+      },
+      colors: {
+        'primary': '#243c5a',
+      }
+    },
   },
   variants: {
     extend: {},

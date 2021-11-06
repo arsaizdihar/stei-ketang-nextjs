@@ -24,16 +24,16 @@ const CustomHead: React.FC<Props> = ({ title, description }) => {
       />
       <meta
         name="twitter:image"
-        content={process.env.NEXT_PUBLIC_BASE_URL + "logo.jpeg"}
+        content={process.env.NEXT_PUBLIC_BASE_URL + "logo.png"}
       />
       <meta name="og:card" content="summary_large_image" />
       <meta name="og:title" content={titleFinal} />
       <meta name="og:description" content={description || defaultDescription} />
       <meta
         name="og:image"
-        content={process.env.NEXT_PUBLIC_BASE_URL + "logo.jpeg"}
+        content={process.env.NEXT_PUBLIC_BASE_URL + "logo.png"}
       />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/logo-bw.ico" />
     </Head>
   );
 };
