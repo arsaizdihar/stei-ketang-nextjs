@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -22,4 +22,10 @@ body {
   @font-face {
     font-family: "Valorant"; 
     src: url("/fonts/Valorant.ttf") format("truetype"); }
+}
+
+.svg-bg-primary {
+  background-image: url("/Waihou.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }

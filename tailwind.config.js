@@ -9,11 +9,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['SF Pro Display', ...fontFamily.sans],
+        primary: ['Inter', ...fontFamily.sans],
         title:['Valorant', ...fontFamily.sans]
       },
       colors: {
-        'primary': '#243c5a',
+        'primary': '#163162',
+        'secondary': '#78CD98',
+        'tertiary' : '#324283',
+        'covers':'#F7F7F7'
       }
     },
   },

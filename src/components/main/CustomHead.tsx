@@ -7,7 +7,9 @@ interface Props {
 }
 const defaultDescription = "Laman resmi STEI'21";
 const CustomHead: React.FC<Props> = ({ title, description }) => {
-  const titleFinal = title ? title + " | STEI'21" : "STEI'21";
+  const titleFinal = title
+    ? title + " | STEI'21 Official Voting Website"
+    : "STEI'21 Official Website";
   return (
     <Head>
       <title>{titleFinal}</title>
