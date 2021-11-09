@@ -7,7 +7,9 @@ interface Props {
 }
 const defaultDescription = "Laman resmi STEI'21";
 const CustomHead: React.FC<Props> = ({ title, description }) => {
-  const titleFinal = title ? title + " | STEI'21" : "STEI'21";
+  const titleFinal = title
+    ? title + " | STEI'21 Official Voting Website"
+    : "STEI'21 Official Website";
   return (
     <Head>
       <title>{titleFinal}</title>
@@ -24,16 +26,16 @@ const CustomHead: React.FC<Props> = ({ title, description }) => {
       />
       <meta
         name="twitter:image"
-        content={process.env.NEXT_PUBLIC_BASE_URL + "logo.jpeg"}
+        content={process.env.NEXT_PUBLIC_BASE_URL + "logo.png"}
       />
       <meta name="og:card" content="summary_large_image" />
       <meta name="og:title" content={titleFinal} />
       <meta name="og:description" content={description || defaultDescription} />
       <meta
         name="og:image"
-        content={process.env.NEXT_PUBLIC_BASE_URL + "logo.jpeg"}
+        content={process.env.NEXT_PUBLIC_BASE_URL + "logo.png"}
       />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/logo-bw.ico" />
     </Head>
   );
 };
