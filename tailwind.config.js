@@ -12,10 +12,15 @@ module.exports = {
         primary: ['Inter', ...fontFamily.sans],
         title:['Valorant', ...fontFamily.sans]
       },
+      fontSize:{
+        'custom' : ['20px', '26px']
+      },
       colors: {
         'primary': '#163162',
         'secondary': '#78CD98',
         'tertiary' : '#324283',
+        'quartiary' :"#6BAE8599",
+        'fiftiary' :"#78CD98",
         'covers':'#F7F7F7'
       }
     },

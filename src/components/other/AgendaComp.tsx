@@ -5,7 +5,7 @@ const AgendaComp: React.FC<{
   date: string;
 }> = ({ content, date }) => {
   return (
-    <div className="flex flex-row space-x-12 text-sm">
+    <div className="flex flex-row space-x-12 text-custom">
       <h2 className="font-semibold">{date}</h2>
       <p>{content}</p>
     </div>
