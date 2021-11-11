@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import React from "react";
-import InstagramEmbed from "react-instagram-embed";
+import { TwitterTimelineEmbed } from "react-twitter-embed";
 import Header from "../src/components/main/CustomHead";
 import Layout from "../src/components/main/Layout";
 import TopMenu from "../src/components/main/TopMenu";
@@ -21,19 +21,10 @@ const Feeds: NextPage = () => {
               <h2 className="text-4xl font-semibold text-white">Feeds</h2>
             </div>
             <div className="App">
-              <InstagramEmbed
-                url="https://www.instagram.com/stei21itb/"
-                clientAccessToken="123|456"
-                maxWidth={500}
-                hideCaption={true}
-                containerTagName="div"
-                protocol=""
-                injectScript
-                onLoading={() => {}}
-                onSuccess={() => {}}
-                onAfterRender={() => {}}
-                onFailure={() => {}}
-              />
+              <TwitterTimelineEmbed
+                sourceType="profile"
+                screenName="stei21itb"
+              ></TwitterTimelineEmbed>
             </div>
           </div>
         </div>

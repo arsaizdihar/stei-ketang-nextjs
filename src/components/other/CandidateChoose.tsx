@@ -6,8 +6,8 @@ const CandidateChoose: React.FC<{
   src?: string;
 }> = ({ name, src }) => {
   return (
-    <div className="flex-grow flex flex-col items-center p-4 text-lg bg-white rounded-lg w-96 max-w-full ">
-      <div className="rounded-lg flex-grow w-full h-80 relative overflow-hidden">
+    <div className="flex-grow flex flex-col items-center p-4 text-lg bg-white rounded-lg w-80 max-w-full ">
+      <div className="rounded-lg flex-grow w-full h-60 relative overflow-hidden">
         <Image
           src={src ? src : "/avatar.jpg"}
           alt={name}

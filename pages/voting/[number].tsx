@@ -44,7 +44,7 @@ const CandidateDetail = ({ number }: Props) => {
             </h2>
 
             <CandidateChoose name={candidate.name} src={candidate.photo} />
-            <div className="flex flex-col justify-center flex-grow w-full max-w-screen-sm px-12 py-2 space-y-4 flex-shrink-0">
+            <div className="flex flex-col justify-center flex-grow w-full max-w-screen-sm sm:px-12 py-2 space-y-4 flex-shrink-0">
               <button className="p-3 text-lg font-bold text-center text-white transition-colors duration-700 transform rounded-lg shadow-md bg-primary hover:bg-gray-100 hover:text-primary">
                 Konfirmasi
               </button>

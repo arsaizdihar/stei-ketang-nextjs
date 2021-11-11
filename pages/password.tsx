@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { FormEventHandler, useState } from "react";
+import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Header from "../src/components/main/CustomHead";
 import Layout from "../src/components/main/Layout";
 import LoginHeader from "../src/components/main/LoginHeader";
@@ -11,13 +12,33 @@ interface Props {
   valid: boolean;
   error?: string;
 }
+
+type FormData = {
+  password: string;
+  password2: string;
+};
 const Password: NextPage<Props> = ({ valid, error, code }) => {
   const [inputState, setInputState] = useState({ password: "", password2: "" });
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<FormData>();
   const router = useRouter();
-  const handleSubmit: FormEventHandler = (e) => {
-    e.preventDefault();
-    console.log(code);
-    setPassword({ ...inputState, code }).then(() => router.push("/login"));
+  console.log(error);
+  console.log(errors);
+  const handleForm: SubmitHandler<FormData> = ({ password, password2 }) => {
+    if (password !== password2) {
+      setError("password", {
+        message: "Two passwords must be same.",
+        type: "same",
+      });
+      return;
+    }
+    setPassword({ password, password2, code }).then(() =>
+      router.push("/login")
+    );
   };
   return (
     <>
@@ -30,30 +51,30 @@ const Password: NextPage<Props> = ({ valid, error, code }) => {
               Ganti Password
             </h2>
             <div className="mt-12">
-              <form noValidate onSubmit={handleSubmit}>
+              <form noValidate onSubmit={handleSubmit(handleForm)}>
                 <div className="mt-8">
                   <input
                     className="input"
                     type="password"
                     placeholder="Password Baru"
-                    value={inputState.password}
-                    onChange={(e) =>
-                      setInputState({ ...inputState, password: e.target.value })
-                    }
+                    {...register("password", {
+                      required: true,
+                      minLength: {
+                        value: 8,
+                        message: "Minimum length of password is 8",
+                      },
+                    })}
                   ></input>
+                  {errors.password && (
+                    <p className="input-error">{errors.password.message}</p>
+                  )}
                 </div>
                 <div className="mt-8">
                   <input
                     className="input"
                     type="password"
                     placeholder="Konfirmasi Password Baru"
-                    value={inputState.password2}
-                    onChange={(e) =>
-                      setInputState({
-                        ...inputState,
-                        password2: e.target.value,
-                      })
-                    }
+                    {...register("password2", { required: true })}
                   ></input>
                 </div>
                 <div className="mt-10">
@@ -72,12 +93,9 @@ const Password: NextPage<Props> = ({ valid, error, code }) => {
 
 Password.getInitialProps = async (ctx) => {
   const { code } = ctx.query;
-  console.log(code);
-  const data = await checkCode(code as string);
-  if (data.valid) {
-    return { valid: true, code };
-  }
-  return { valid: false, error: data.error, code };
+  return await checkCode(code as string)
+    .then(() => ({ valid: true, code }))
+    .catch((error) => ({ valid: false, error: error?.response?.data, code }));
 };
 
 export default Password;

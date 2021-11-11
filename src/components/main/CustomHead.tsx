@@ -14,10 +14,6 @@ const CustomHead: React.FC<Props> = ({ title, description }) => {
     <Head>
       <title>{titleFinal}</title>
       <meta name="description" content={description || defaultDescription} />
-      <meta
-        name="google-site-verification"
-        content="1C1Y1OJ3McwI4ruz_aEoIOpUe_FThhrB9mM77pFSTTw"
-      />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={titleFinal} />
       <meta
@@ -35,7 +31,7 @@ const CustomHead: React.FC<Props> = ({ title, description }) => {
         name="og:image"
         content={process.env.NEXT_PUBLIC_BASE_URL + "logo.png"}
       />
-      <link rel="icon" href="/logo-bw.ico" />
+      <link rel="icon" href="/logo.ico" />
     </Head>
   );
 };
