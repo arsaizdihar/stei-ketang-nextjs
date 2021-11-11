@@ -1,13 +1,22 @@
+import Image from "next/image";
 import React from "react";
 
 const CandidateChoose: React.FC<{
   name: string;
-}> = ({ name }) => {
+  src?: string;
+}> = ({ name, src }) => {
   return (
-    <div className="flex flex-col items-center pt-4 text-lg bg-white rounded-lg w-72 ">
-      <div className="bg-gray-400 rounded-lg h-72 w-60"></div>
+    <div className="flex-grow flex flex-col items-center p-4 text-lg bg-white rounded-lg w-96 max-w-full ">
+      <div className="rounded-lg flex-grow w-full h-80 relative overflow-hidden">
+        <Image
+          src={src ? src : "/avatar.jpg"}
+          alt={name}
+          layout="fill"
+          className="object-cover"
+        />
+      </div>
       <div className="p-2 space-y-2">
-        <h2 className="text-xl font-semibold text-center ">{name}</h2>
+        <h2 className="text-2xl font-semibold text-center ">{name}</h2>
         <p className="text-sm text-center ">
           Setelah kamu menekan tombol ‘Konfirmasi’, kamu tidak akan bisa
           mengganti pilihanmu atau memilih orang lain lagi.

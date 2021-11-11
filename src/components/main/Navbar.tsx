@@ -1,22 +1,15 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import React from "react";
 
 const Navbar: React.FC = () => {
   const CheckPage = () => {
     const router = useRouter();
-    return `${
-      router.pathname === "/" ||
-      router.pathname === "/register" ||
-      router.pathname === "/login" ||
-      router.pathname === "/voting/1" ||
-      router.pathname === "/voting/2" ||
-      router.pathname === "/voting/3" ||
-      router.pathname === "/voting/done"
-        ? "hidden"
-        : "visible"
-    }`;
+    const hiddens = ["/", "/password", "/login"];
+    return (
+      hiddens.includes(router.pathname) || router.pathname.startsWith("/voting")
+    );
   };
 
   const CheckDashboard = () => {
@@ -47,9 +40,11 @@ const Navbar: React.FC = () => {
     }
   };
 
+  if (CheckPage()) return null;
+
   return (
     <footer
-      className={`fixed bottom-0 z-30 ${CheckPage()} w-full max-w-screen-sm px-4 py-2 duration-300 bg-white border-t-2 shadow-sm border-primary`}
+      className={`fixed bottom-0 z-30 w-full max-w-screen-sm px-4 py-2 duration-300 bg-white border-t-2 shadow-sm border-primary`}
     >
       <nav className="container mx-auto">
         <div className="flex flex-row items-center space-x-10 justify-evenly">

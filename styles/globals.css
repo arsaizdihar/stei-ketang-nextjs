@@ -30,3 +30,7 @@ body {
   background-size: cover;
 }
 
+.input {
+  @apply w-full py-2 text-base border-0 border-b-2 border-gray-300 focus:outline-none focus:border-tertiary focus:ring-0;
+}
+

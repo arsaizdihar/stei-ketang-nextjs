@@ -1,16 +1,20 @@
 import type { NextPage } from "next";
+import React from "react";
 import Header from "../src/components/main/CustomHead";
 import Layout from "../src/components/main/Layout";
 import TopMenu from "../src/components/main/TopMenu";
+import AgendaComp from "../src/components/other/AgendaComp";
 import CandidateBox, {
   CandidateChosen,
 } from "../src/components/other/CandidateBox";
-import AgendaComp from "../src/components/other/AgendaComp";
-import React from "react";
+import NoLoginRedirect from "../src/components/other/NoLoginRedirect";
+import useMe from "../src/hooks/useMe";
 
 const Home: NextPage = () => {
+  const { user } = useMe();
   return (
     <>
+      <NoLoginRedirect />
       <Header title="Home" />
       <Layout>
         <div className="flex flex-col pb-16">
@@ -24,21 +28,13 @@ const Home: NextPage = () => {
                 Pemilihan Ketua Angkatan STEI 2021
               </h2>
             </div>
-
-            {/* Candidate List */}
-            <CandidateChosen />
+            {user && (user.vote ? <CandidateChosen /> : <CandidateBox />)}
           </div>
 
           {/* Agenda */}
           <div className="z-0 flex-grow px-6 py-6 -mt-12 space-y-6 bg-white">
             <h1 className="pt-4 text-4xl font-bold">Agenda</h1>
             <div className="space-y-4">
-              <AgendaComp content="Pemilihan dibuka" date="32 Feb" />
-              <AgendaComp content="Pemilihan ditutup" date="32 Feb" />
-              <AgendaComp content="Rekapitulasi suara" date="32 Feb" />
-              <AgendaComp content="Pemilihan dibuka" date="32 Feb" />
-              <AgendaComp content="Pemilihan ditutup" date="32 Feb" />
-              <AgendaComp content="Rekapitulasi suara" date="32 Feb" />
               <AgendaComp content="Pemilihan dibuka" date="32 Feb" />
               <AgendaComp content="Pemilihan ditutup" date="32 Feb" />
               <AgendaComp content="Rekapitulasi suara" date="32 Feb" />

@@ -1,12 +1,14 @@
 import type { NextPage } from "next";
+import Image from "next/image";
+import React from "react";
 import Header from "../../src/components/main/CustomHead";
 import Layout from "../../src/components/main/Layout";
-import React from "react";
-import Image from "next/image";
+import NoLoginRedirect from "../../src/components/other/NoLoginRedirect";
 
 const ConfirmCandidate: NextPage = () => {
   return (
     <>
+      <NoLoginRedirect />
       <Header />
       <Layout>
         <div className="flex flex-col items-center w-full px-8 py-16 text-white bg-gradient-to-b from-primary to-tertiary">

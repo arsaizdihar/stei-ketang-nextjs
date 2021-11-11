@@ -1,13 +1,18 @@
 import React from "react";
-import Image from "next/image";
+import useMe from "../../hooks/useMe";
+import Settings from "../other/Settings";
 
 const TopMenu: React.FC = () => {
+  const { user } = useMe();
   return (
     <div className="flex flex-row justify-between">
-      <Image src="/icons/settings.svg" alt="me" width="30" height="30" />
-      <p className="text-xl text-white">
-        Halo, <span className="font-semibold">Nama</span>!
-      </p>
+      <Settings />
+
+      {user && (
+        <p className="text-xl text-white">
+          Halo, <span className="font-semibold">{user.full_name}</span>!
+        </p>
+      )}
     </div>
   );
 };

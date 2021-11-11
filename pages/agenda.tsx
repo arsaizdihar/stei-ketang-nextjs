@@ -1,14 +1,16 @@
 import type { NextPage } from "next";
+import Image from "next/image";
+import React from "react";
 import Header from "../src/components/main/CustomHead";
 import Layout from "../src/components/main/Layout";
-import AgendaComp from "../src/components/other/AgendaComp";
 import TopMenu from "../src/components/main/TopMenu";
-import React from "react";
-import Image from "next/image";
+import AgendaComp from "../src/components/other/AgendaComp";
+import NoLoginRedirect from "../src/components/other/NoLoginRedirect";
 
 const Agenda: NextPage = () => {
   return (
     <>
+      <NoLoginRedirect />
       <Header />
       <Layout>
         <div className="w-full pb-16">
