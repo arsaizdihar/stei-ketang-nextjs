@@ -9,7 +9,7 @@ import ProgressBar from "../../src/components/other/Progressbar";
 import useCandidates from "../../src/hooks/useCandidates";
 
 const Voting: NextPage = () => {
-  const { candidates } = useCandidates();
+  const { data: candidates } = useCandidates();
   return (
     <>
       <NoLoginRedirect />

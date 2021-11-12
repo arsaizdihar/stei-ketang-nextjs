@@ -5,7 +5,7 @@ import useMe from "../../hooks/useMe";
 import IconPicture from "./IconPicture";
 
 const CandidateBox: React.FC<{}> = () => {
-  const { candidates } = useCandidates();
+  const { data: candidates } = useCandidates();
   return (
     <div>
       <div className="flex flex-col justify-center py-5 space-y-10">

@@ -21,10 +21,10 @@
     "react-dom": "17.0.2",
     "react-hook-form": "^7.19.4",
     "react-portal": "^4.2.1",
+    "react-query": "^3.32.1",
     "react-spring-carousel-js": "^1.9.30",
     "react-toastify": "^8.1.0",
-    "react-twitter-embed": "^3.0.3",
-    "swr": "^1.0.1"
+    "react-twitter-embed": "^3.0.3"
   },
   "devDependencies": {
     "@types/node": "16.11.6",

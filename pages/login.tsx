@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import { mutate } from "swr";
 import Header from "../src/components/main/CustomHead";
 import Layout from "../src/components/main/Layout";
 import LoginHeader from "../src/components/main/LoginHeader";
@@ -21,23 +21,29 @@ const Login: NextPage = () => {
     setError,
     formState: { errors, isSubmitting },
   } = useForm<FormData>();
+  const queryClient = useQueryClient();
   const router = useRouter();
   const { user } = useMe();
-  if (user) router.push("/dashboard");
+  const loggedIn = useRef(false);
+  if (user) {
+    if (loggedIn.current) {
+      loggedIn.current = false;
+      toast.dismiss();
+      toast.info(`Selamat datang ${user?.full_name}!`, {
+        delay: 800,
+        icon: false,
+        autoClose: 2000,
+      });
+    }
+    router.push("/dashboard");
+  }
 
   const handleLogin: SubmitHandler<FormData> = async ({ email, password }) => {
     toast.loading("Loggin in....", {});
     await login(email, password)
       .then(() => {
-        toast.dismiss();
-        mutate("me/").then((data) => {
-          toast.info(`Selamat datang ${data.full_name}!`, {
-            delay: 800,
-            icon: false,
-            autoClose: 2000,
-          });
-          router.push("/dashboard");
-        });
+        loggedIn.current = true;
+        queryClient.refetchQueries("me");
       })
       .catch((err) => {
         toast.dismiss();

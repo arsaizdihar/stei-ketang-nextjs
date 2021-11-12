@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
-import { mutate } from "swr";
+import { useQueryClient } from "react-query";
 
 const useLogout = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const logout = async () => {
     localStorage.clear();
-    await mutate("me/", null);
-    router.push("/login");
+    queryClient.refetchQueries("me").then(() => router.push("/login"));
   };
 
   return logout;

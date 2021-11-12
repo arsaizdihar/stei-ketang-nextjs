@@ -16,7 +16,8 @@ interface Props {
   number: string;
 }
 const CandidateDetail = ({ number }: Props) => {
-  const { candidate, error } = useCandidate(number);
+  const { data: candidate, error } = useCandidate(number);
+
   const [choose, setChoose] = useState(false);
   if (error?.response?.status == 404)
     return <DefaultErrorPage statusCode={404} />;
