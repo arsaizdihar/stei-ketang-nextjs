@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
 
   return (
     <footer
-      className={`fixed bottom-0 z-30 w-full max-w-screen-sm px-4 py-2 duration-300 bg-white border-t-2 shadow-sm border-primary`}
+      className={`fixed bottom-0 z-30 w-full max-w-lg px-4 py-2 duration-300 bg-white border-t-2 shadow-sm border-primary`}
     >
       <nav className="container mx-auto">
         <div className="flex flex-row items-center space-x-10 justify-evenly">

@@ -4,10 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --toastify-color-info: #78CD98;
+}
+
 html,
 body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow-y: overlay;
+    
 }
 
 @layer base {

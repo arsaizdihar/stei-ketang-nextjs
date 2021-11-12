@@ -13,7 +13,7 @@ const CandidateBox: React.FC<{}> = () => {
           Berlangsung dari __/__/__ s.d. __/__/__
         </p>
       </div>
-      <div className="flex flex-wrap justify-start overflow-hidden">
+      <div className="grid grid-cols-2 sm:grid-cols-3 overflow-hidden">
         {candidates?.map((candidate) => (
           <IconPicture
             name={candidate.name}

@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { mutate } from "swr";
 import Header from "../src/components/main/CustomHead";
 import Layout from "../src/components/main/Layout";
@@ -18,18 +19,28 @@ const Login: NextPage = () => {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>();
   const router = useRouter();
   const { user } = useMe();
   if (user) router.push("/dashboard");
 
-  const handleLogin: SubmitHandler<FormData> = ({ email, password }) => {
-    login(email, password)
-      .then((data) => {
-        mutate("me/").then(() => router.push("/dashboard"));
+  const handleLogin: SubmitHandler<FormData> = async ({ email, password }) => {
+    toast.loading("Loggin in....", {});
+    await login(email, password)
+      .then(() => {
+        toast.dismiss();
+        mutate("me/").then((data) => {
+          toast.info(`Selamat datang ${data.full_name}!`, {
+            delay: 800,
+            icon: false,
+            autoClose: 2000,
+          });
+          router.push("/dashboard");
+        });
       })
       .catch((err) => {
+        toast.dismiss();
         if (err?.response?.status === 400 || err?.response?.status === 401) {
           setError("password", {
             message: "Invalid email or password",
@@ -79,7 +90,10 @@ const Login: NextPage = () => {
                   )}
                 </div>
                 <div className="mt-10">
-                  <button className="w-full p-4 text-lg font-semibold tracking-wide text-gray-100 duration-700 shadow-lg rounded-xl bg-primary font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600">
+                  <button
+                    className="w-full p-4 text-lg font-semibold tracking-wide text-gray-100 duration-700 shadow-lg rounded-xl bg-primary font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 disabled:bg-gray-400"
+                    disabled={isSubmitting}
+                  >
                     LOG IN
                   </button>
                 </div>

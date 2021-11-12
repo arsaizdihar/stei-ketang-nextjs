@@ -1,8 +1,8 @@
-import { Tab } from "@headlessui/react";
+import { Tab, Transition } from "@headlessui/react";
 import { GetServerSideProps } from "next";
 import DefaultErrorPage from "next/error";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import BackButton from "../../src/components/buttons/BackButton";
 import Header from "../../src/components/main/CustomHead";
 import Layout from "../../src/components/main/Layout";
@@ -25,26 +25,34 @@ const CandidateDetail = ({ number }: Props) => {
     <>
       <NoLoginRedirect />
       <Header />
-      {choose ? (
-        <Layout>
-          <header className="fixed z-30 w-full p-4 duration-300">
-            <nav className="flex flex-row items-center justify-center align-middle">
-              <div className="relative w-full max-w-screen-sm">
-                <div className="absolute left-0 ml-2">
-                  <BackButton onClick={() => setChoose(false)} />
-                </div>
-                <ProgressBar number={3} />
+      <Layout>
+        <header className="fixed z-30 w-full p-4 duration-300">
+          <nav className="flex flex-row items-center justify-center align-middle">
+            <div className="relative w-full max-w-lg">
+              <div className="absolute left-0 ml-2">
+                <BackButton
+                  onClick={choose ? () => setChoose(false) : undefined}
+                  link={choose ? undefined : "/voting"}
+                />
               </div>
-            </nav>
-          </header>
-
-          <div className="flex flex-col items-center w-full px-4 pt-28 bg-gradient-to-b from-primary to-tertiary">
+              <ProgressBar number={choose ? 3 : 2} />
+            </div>
+          </nav>
+        </header>
+        <Transition
+          show={choose}
+          as={Fragment}
+          enter="transform transition duration-700 ease-in-out relative delay-300"
+          enterFrom="translate-y-full"
+          enterTo="translate-y-0"
+        >
+          <div className="flex flex-col items-center w-full px-4 pt-20 bg-gradient-to-b from-primary to-tertiary overflow-hidden">
             <h2 className="flex flex-row justify-center w-full mb-4 text-4xl font-semibold text-white flex-shrink-0">
               Konfirmasi Pilihan
             </h2>
 
             <CandidateChoose name={candidate.name} src={candidate.photo} />
-            <div className="flex flex-col justify-center flex-grow w-full max-w-screen-sm sm:px-12 py-2 space-y-4 flex-shrink-0">
+            <div className="flex flex-col justify-center flex-grow w-full max-w-lg sm:px-12 py-2 space-y-4 flex-shrink-0">
               <button className="p-3 text-lg font-bold text-center text-white transition-colors duration-700 transform rounded-lg shadow-md bg-primary hover:bg-gray-100 hover:text-primary">
                 Konfirmasi
               </button>
@@ -56,33 +64,27 @@ const CandidateDetail = ({ number }: Props) => {
               </button>
             </div>
           </div>
-        </Layout>
-      ) : (
-        <Layout>
-          <header className="fixed z-30 w-full p-4 duration-300">
-            <nav className="flex flex-row items-center justify-center align-middle">
-              <div className="relative w-full max-w-screen-sm">
-                <div className="absolute left-0 ml-2">
-                  <BackButton link={"/voting"} />
-                </div>
-                <ProgressBar number={2} />
-              </div>
-            </nav>
-          </header>
-
+        </Transition>
+        <Transition
+          as={Fragment}
+          show={!choose}
+          appear
+          enter="transform transition duration-700 ease-in-out relative delay-300"
+          enterFrom="translate-y-full"
+          enterTo="translate-y-0"
+        >
           <div className="relative flex flex-col items-center w-full min-h-full pt-20 bg-primary">
-            <div className="z-20 flex flex-col mx-2 my-2 -mb-12 text-lg w-52 h-72">
+            <div className="z-20 flex flex-col mx-2 my-2 -mb-12 text-lg w-52 h-64 flex-shrink-0">
               <div className="w-full h-full rounded-lg relative overflow-hidden">
                 <Image
-                  //   src="/avatar.jpg"
-                  src={candidate?.photo}
+                  src={candidate.photo || "/avatar.jpg"}
                   alt={candidate.name}
                   layout="fill"
                   className="object-cover"
                 />
               </div>
             </div>
-            <div className="flex flex-col items-center w-full h-full px-4 pt-16 bg-white rounded-t-xl">
+            <div className="flex flex-col items-center w-full h-full px-4 pt-16 pb-8 bg-white rounded-t-xl">
               <h2 className="text-2xl font-semibold text-black">
                 {candidate?.name}
               </h2>
@@ -120,17 +122,25 @@ const CandidateDetail = ({ number }: Props) => {
                 </Tab.Panels>
               </Tab.Group>
             </div>
-            <div className="fixed bottom-0 flex justify-center flex-grow w-full max-w-screen-sm px-12 py-2 bg-white">
-              <button
-                onClick={() => setChoose(true)}
-                className="flex-grow p-3 text-lg font-bold text-center text-white transition-colors duration-700 transform rounded-lg shadow-md bg-primary hover:bg-gray-100 hover:text-primary"
-              >
-                Coblos
-              </button>
-            </div>
           </div>
-        </Layout>
-      )}
+        </Transition>
+        <Transition
+          as="div"
+          appear
+          show={!choose}
+          enter="transform transition duration-500 ease-in-out delay-500"
+          enterFrom="scale-0"
+          enterTo="scale-100"
+          className="fixed bottom-0 flex justify-center flex-grow w-full max-w-lg px-12 py-2"
+        >
+          <button
+            onClick={() => setChoose(true)}
+            className="flex-grow p-3 text-lg font-bold text-center text-white transition-colors duration-700 transform rounded-lg shadow-md bg-primary hover:bg-gray-100 hover:text-primary"
+          >
+            Coblos
+          </button>
+        </Transition>
+      </Layout>
     </>
   );
 };

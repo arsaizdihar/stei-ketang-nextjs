@@ -17,7 +17,7 @@ const Voting: NextPage = () => {
       <Layout>
         <header className="fixed z-30 w-full p-4 duration-300">
           <nav className="flex flex-row items-center justify-center align-middle ">
-            <div className="relative w-full max-w-screen-sm">
+            <div className="relative w-full max-w-lg">
               <div className="absolute left-0 ml-2">
                 <BackButton link="/dashboard" />
               </div>
@@ -32,25 +32,14 @@ const Voting: NextPage = () => {
           </h2>
 
           <div className="grid grid-cols-2 py-4 overflow-hidden w-full justify-items-center sm:px-8">
-            {candidates?.map((candidate, idx) =>
-              idx == candidates.length - 1 && candidates.length % 2 == 1 ? (
-                <div className="col-span-2">
-                  <CandidateList
-                    name={candidate.name}
-                    src={candidate.photo}
-                    key={candidate.number}
-                    number={candidate.number}
-                  />
-                </div>
-              ) : (
-                <CandidateList
-                  name={candidate.name}
-                  src={candidate.photo}
-                  key={candidate.number}
-                  number={candidate.number}
-                />
-              )
-            )}
+            {candidates?.map((candidate, idx) => (
+              <CandidateList
+                name={candidate.name}
+                src={candidate.photo}
+                key={candidate.number}
+                number={candidate.number}
+              />
+            ))}
           </div>
         </div>
       </Layout>
