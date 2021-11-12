@@ -13,9 +13,11 @@ const CandidateBox: React.FC<{}> = () => {
           Berlangsung dari __/__/__ s.d. __/__/__
         </p>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 overflow-hidden">
-        {candidates?.map((candidate) => (
+      <div className="grid grid-cols-6">
+        {candidates?.map((candidate, idx) => (
           <IconPicture
+            count={candidates.length}
+            idx={idx}
             name={candidate.name}
             src={candidate.photo}
             key={candidate.number}

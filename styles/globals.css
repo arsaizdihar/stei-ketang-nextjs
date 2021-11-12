@@ -25,9 +25,6 @@ body {
     url("//db.onlinewebfonts.com/t/0b51833ff62e4af8acb5fd3e2bf59e97.woff") format("woff"), 
     url("//db.onlinewebfonts.com/t/0b51833ff62e4af8acb5fd3e2bf59e97.ttf") format("truetype"), 
     url("//db.onlinewebfonts.com/t/0b51833ff62e4af8acb5fd3e2bf59e97.svg#SF Pro Display") format("svg"); }
-  @font-face {
-    font-family: "Valorant"; 
-    src: url("/fonts/Valorant.ttf") format("truetype"); }
 }
 
 .svg-bg-primary {

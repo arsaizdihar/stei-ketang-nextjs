@@ -92,7 +92,7 @@ const NavComp: React.FC<{
           height="26"
           className="rounded"
         />
-        {/* <p className="text-sm tracking-tight font-primary">{name}</p> */}
+        <p className="text-xs tracking-tighter font-primary">{name}</p>
       </a>
     </Link>
   );

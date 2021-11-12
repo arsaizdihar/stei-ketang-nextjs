@@ -26,12 +26,12 @@ const Voting: NextPage = () => {
           </nav>
         </header>
 
-        <div className="flex flex-col items-center w-full px-4 pt-28 bg-primary">
-          <h2 className="text-4xl font-semibold text-white">
+        <div className="flex flex-col items-center w-full px-4 pt-20 bg-primary">
+          <h2 className="text-4xl font-semibold text-white px-8 flex-shrink-0">
             Pilih Calon Ketua Angkatan
           </h2>
 
-          <div className="grid grid-cols-2 py-4 overflow-hidden w-full justify-items-center sm:px-8">
+          <div className="grid grid-cols-2 py-4 overflow-hidden w-full justify-items-center items-center px-4 flex-grow">
             {candidates?.map((candidate, idx) => (
               <CandidateList
                 name={candidate.name}

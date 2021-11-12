@@ -16,7 +16,6 @@ export const fetchWithToken = async (
     error.info = "Unauthorized";
     throw error;
   }
-  console.log(url);
   const startFetch = async () => {
     token = localStorage.getItem("token");
     const headers = {

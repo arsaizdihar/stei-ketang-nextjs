@@ -85,7 +85,7 @@ const CandidateDetail = ({ number }: Props) => {
               </div>
             </div>
             <div className="flex flex-col items-center w-full h-full px-4 pt-16 pb-8 bg-white rounded-t-xl">
-              <h2 className="text-2xl font-semibold text-black">
+              <h2 className="text-2xl font-bold text-primary">
                 {candidate?.name}
               </h2>
               <Tab.Group>
@@ -93,20 +93,22 @@ const CandidateDetail = ({ number }: Props) => {
                   <Tab
                     className={({ selected }) =>
                       selected
-                        ? "text-primary font-bold flex flex-col items-center w-full border-b-2 border-primary transition duration-300"
-                        : "bg-white text-black flex flex-col items-center w-full transition duration-300"
+                        ? "text-primary font-bold flex flex-col items-center w-full border-b-[3.5px] border-primary transition duration-300 p-2"
+                        : "bg-white text-black flex flex-col items-center w-full transition duration-300 p-2"
                     }
                   >
-                    <p>Tentang</p>
+                    <p className="text-lg">TENTANG</p>
                   </Tab>
                   <Tab
                     className={({ selected }) =>
-                      selected
-                        ? "text-primary font-bold flex flex-col items-center w-full border-b-2 border-primary transition duration-300"
-                        : "bg-white text-black flex flex-col items-center w-full transition duration-300"
+                      `flex flex-col items-center w-full duration-300 p-2 border-b-[3.5px] bg-white ${
+                        selected
+                          ? "text-primary font-bold w-full border-primary"
+                          : "text-black border-transparent"
+                      }`
                     }
                   >
-                    <p>Sosmed</p>
+                    <p className="text-lg">SOSMED</p>
                   </Tab>
 
                   {/* ... */}
@@ -131,13 +133,13 @@ const CandidateDetail = ({ number }: Props) => {
           enter="transform transition duration-500 ease-in-out delay-500"
           enterFrom="scale-0"
           enterTo="scale-100"
-          className="fixed bottom-0 flex justify-center flex-grow w-full max-w-lg px-12 py-2"
+          className="fixed bottom-0 flex justify-center flex-grow w-full max-w-lg px-12 py-4"
         >
           <button
             onClick={() => setChoose(true)}
             className="flex-grow p-3 text-lg font-bold text-center text-white transition-colors duration-700 transform rounded-lg shadow-md bg-primary hover:bg-gray-100 hover:text-primary"
           >
-            Coblos
+            COBLOS
           </button>
         </Transition>
       </Layout>

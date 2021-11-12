@@ -55,8 +55,8 @@ const Login: NextPage = () => {
       <Layout>
         <LoginHeader />
         <div className="flex flex-col justify-center w-full bg-white">
-          <div className="px-12 sm:px-24 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
-            <h2 className="text-4xl font-bold text-center text-primary lg:text-left xl:text-5xl xl:text-bold">
+          <div className="px-12 sm:px-24 lg:px-12 lg:mt-16 xl:px-24">
+            <h2 className="text-4xl font-bold text-center text-primary">
               Log In
             </h2>
             <div className="mt-12">
@@ -91,7 +91,7 @@ const Login: NextPage = () => {
                 </div>
                 <div className="mt-10">
                   <button
-                    className="w-full p-4 text-lg font-semibold tracking-wide text-gray-100 duration-700 shadow-lg rounded-xl bg-primary font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 disabled:bg-gray-400"
+                    className="w-full px-4 py-3 text-lg font-bold tracking-wide text-gray-100 duration-700 shadow-lg rounded-xl bg-primary font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 disabled:bg-gray-400"
                     disabled={isSubmitting}
                   >
                     LOG IN

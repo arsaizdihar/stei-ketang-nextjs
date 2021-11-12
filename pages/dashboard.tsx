@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 
             {/* Jargon */}
             <div className="flex flex-col justify-center py-5">
-              <h2 className="text-4xl font-semibold text-white">
+              <h2 className="text-4xl font-bold tracking-wide text-white">
                 Pemilihan Ketua Angkatan STEI 2021
               </h2>
             </div>
