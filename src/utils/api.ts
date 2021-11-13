@@ -1,5 +1,6 @@
 import axios from "axios";
 import { apiUrl } from "../constants/apiUrl";
+import { fetchWithToken } from "./fetchWithToken";
 import { setToken } from "./setToken";
 const headers = {
   "Content-Type": "application/json",
@@ -32,3 +33,6 @@ export const setPassword = async (data: {
     .post(apiUrl + "password/set/", data, { headers })
     .then((res) => res.data);
 };
+
+export const vote = async (number: number | string) =>
+  await fetchWithToken("vote/", { number }, "POST");

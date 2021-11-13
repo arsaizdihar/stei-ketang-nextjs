@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import Header from "../src/components/main/CustomHead";
 import Layout from "../src/components/main/Layout";
 import LoginHeader from "../src/components/main/LoginHeader";
@@ -11,13 +12,21 @@ interface Props {
   code: any;
   valid: boolean;
   error?: string;
+  full_name?: string;
+  email?: string;
 }
 
 type FormData = {
   password: string;
   password2: string;
 };
-const Password: NextPage<Props> = ({ valid, error, code }) => {
+const Password: NextPage<Props> = ({
+  valid,
+  error,
+  code,
+  full_name,
+  email,
+}) => {
   const {
     register,
     handleSubmit,
@@ -33,9 +42,10 @@ const Password: NextPage<Props> = ({ valid, error, code }) => {
       });
       return;
     }
-    setPassword({ password, password2, code }).then(() =>
-      router.push("/login")
-    );
+    setPassword({ password, password2, code }).then(() => {
+      toast.success("Berhasil mengganti password. Silahkan log in.");
+      router.push(`/login${email ? "?email=" + email : ""}`);
+    });
   };
   return (
     <>
@@ -43,12 +53,14 @@ const Password: NextPage<Props> = ({ valid, error, code }) => {
       <Layout>
         <LoginHeader />
         <div className="flex flex-col justify-center w-full bg-white">
-          <div className="px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24">
+          <div className="px-12 sm:px-24 lg:mt-16 xl:px-24">
             {!error ? (
               <>
                 <h2 className="text-4xl font-bold text-center text-primary">
                   Ganti Password
                 </h2>
+                <p className="text-center">{full_name}</p>
+                <p className="text-center">{email}</p>
                 <div className="mt-12">
                   <form noValidate onSubmit={handleSubmit(handleForm)}>
                     <div className="mt-8">
@@ -99,8 +111,16 @@ const Password: NextPage<Props> = ({ valid, error, code }) => {
 Password.getInitialProps = async (ctx) => {
   const { code } = ctx.query;
   return await checkCode(code as string)
-    .then((data) => {
-      return { valid: true, code };
+    .then(() => {
+      let full_name = "";
+      let email = "";
+      try {
+        const b = Buffer.from((code as string).split(":")[0], "base64");
+        const data = JSON.parse(b.toString());
+        full_name = data.full_name;
+        email = data.email;
+      } catch (err) {}
+      return { valid: true, code, full_name, email };
     })
     .catch((error) => ({
       valid: false,

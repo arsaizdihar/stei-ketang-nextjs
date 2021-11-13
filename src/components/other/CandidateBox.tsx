@@ -18,7 +18,6 @@ const CandidateBox: React.FC<{}> = () => {
           <IconPicture
             count={candidates.length}
             idx={idx}
-            name={candidate.name}
             src={candidate.photo}
             key={candidate.number}
           />
@@ -41,7 +40,7 @@ export const CandidateChosen: React.FC = () => {
   return (
     <div>
       <h1 className="text-lg text-white">Kamu telah memilih: </h1>
-      <div className="z-10 flex flex-row justify-center p-3 pl-6 pr-6">
+      <div className="z-10 flex flex-row justify-center p-3 pl-6 pr-6 my-4">
         <IconPicture name={user.vote.name} src={user.vote.photo} />
       </div>
     </div>

@@ -3,6 +3,7 @@ import React from "react";
 import BackButton from "../../src/components/buttons/BackButton";
 import Header from "../../src/components/main/CustomHead";
 import Layout from "../../src/components/main/Layout";
+import AlreadyVoteRedirect from "../../src/components/other/AlreadyVoteRedirect";
 import CandidateList from "../../src/components/other/CandidateList";
 import NoLoginRedirect from "../../src/components/other/NoLoginRedirect";
 import ProgressBar from "../../src/components/other/Progressbar";
@@ -13,11 +14,12 @@ const Voting: NextPage = () => {
   return (
     <>
       <NoLoginRedirect />
+      <AlreadyVoteRedirect />
       <Header />
       <Layout>
-        <header className="fixed z-30 w-full p-4 duration-300">
+        <header className="fixed z-30 w-full duration-300">
           <nav className="flex flex-row items-center justify-center align-middle ">
-            <div className="relative w-full max-w-lg">
+            <div className="relative w-full max-w-lg bg-primary p-4">
               <div className="absolute left-0 ml-2">
                 <BackButton link="/dashboard" />
               </div>

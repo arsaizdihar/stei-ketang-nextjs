@@ -1,3 +1,4 @@
+import { config } from "@fortawesome/fontawesome-svg-core";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider, setLogger } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -11,6 +12,7 @@ setLogger({
   log: console.log,
   warn: console.warn,
 });
+config.autoAddCss = false;
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>

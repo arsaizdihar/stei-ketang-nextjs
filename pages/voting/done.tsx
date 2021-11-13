@@ -5,12 +5,14 @@ import Link from "next/link";
 import React from "react";
 import Header from "../../src/components/main/CustomHead";
 import Layout from "../../src/components/main/Layout";
+import AlreadyVoteRedirect from "../../src/components/other/AlreadyVoteRedirect";
 import NoLoginRedirect from "../../src/components/other/NoLoginRedirect";
 
 const ConfirmCandidate: NextPage = () => {
   return (
     <>
       <NoLoginRedirect />
+      <AlreadyVoteRedirect />
       <Header />
       <Layout>
         <div className="flex flex-col items-center w-full px-8 py-16 text-white bg-gradient-to-b from-primary to-tertiary">

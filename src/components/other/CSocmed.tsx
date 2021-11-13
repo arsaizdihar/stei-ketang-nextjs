@@ -6,25 +6,37 @@ import {
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { Candidate } from "../../ts/types";
 
-const CandidateSocmed: React.FC = () => {
+const CandidateSocmed: React.FC<Candidate | undefined> = ({
+  instagram,
+  twitter,
+  linkedin,
+  name,
+}) => {
   return (
-    <div className="flex flex-col flex-grow w-full h-full space-y-6 text-primary">
-      <SocmedLink
-        name="@nuha"
-        icon={faInstagram}
-        href="https://www.instagram.com/stei21itb/"
-      />
-      <SocmedLink
-        name="@nuha"
-        icon={faTwitterSquare}
-        href="https://twitter.com/stei21itb"
-      />
-      <SocmedLink
-        name="@nuha"
-        icon={faLinkedin}
-        href="https://www.google.com"
-      />
+    <div className="flex flex-col flex-grow w-full h-full space-y-4 text-primary">
+      {instagram && (
+        <SocmedLink
+          name={"@" + instagram}
+          icon={faInstagram}
+          href={`https://www.instagram.com/${instagram}/`}
+        />
+      )}
+      {twitter && (
+        <SocmedLink
+          name={"@" + twitter}
+          icon={faTwitterSquare}
+          href={"https://twitter.com/" + twitter}
+        />
+      )}
+      {linkedin && (
+        <SocmedLink
+          name={name}
+          icon={faLinkedin}
+          href={"https://www.linkedin.com/in/" + linkedin}
+        />
+      )}
     </div>
   );
 };
@@ -39,14 +51,19 @@ const SocmedLink: React.FC<{
 }> = ({ icon, className, href, name }) => {
   return (
     <a
-      className={`flex flex-row align-middle items-center space-x-4 hover:bg-gray-200 duration-300 p-2 rounded group ${
+      className={`flex flex-row align-middle items-center hover:bg-gray-200 duration-300 p-2 rounded group ${
         className || ""
       }`}
       href={href}
       target="_blank"
       rel="noreferrer"
     >
-      <FontAwesomeIcon icon={icon} className="w-9 h-9 text-black mx-4" />
+      <FontAwesomeIcon
+        icon={icon}
+        className="text-black mx-4 block p-0"
+        width="2.25rem"
+        height="2.25rem"
+      />
       <p className="text-lg text-primary">{name}</p>
     </a>
   );

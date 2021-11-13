@@ -2,34 +2,49 @@ import { Tab, Transition } from "@headlessui/react";
 import { GetServerSideProps } from "next";
 import DefaultErrorPage from "next/error";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
+import { useQueryClient } from "react-query";
 import BackButton from "../../src/components/buttons/BackButton";
 import Header from "../../src/components/main/CustomHead";
 import Layout from "../../src/components/main/Layout";
+import AlreadyVoteRedirect from "../../src/components/other/AlreadyVoteRedirect";
 import CandidateAbout from "../../src/components/other/Cabout";
 import CandidateChoose from "../../src/components/other/CandidateChoose";
 import CandidateSocmed from "../../src/components/other/CSocmed";
 import NoLoginRedirect from "../../src/components/other/NoLoginRedirect";
 import ProgressBar from "../../src/components/other/Progressbar";
 import useCandidate from "../../src/hooks/useCandidate";
+import { vote } from "../../src/utils/api";
 interface Props {
   number: string;
 }
 const CandidateDetail = ({ number }: Props) => {
   const { data: candidate, error } = useCandidate(number);
+  const queryClient = useQueryClient();
 
   const [choose, setChoose] = useState(false);
+  const router = useRouter();
+
+  const handleConfirm = () => {
+    vote(number).then(() => {
+      queryClient.refetchQueries("me");
+      router.push("/voting/done");
+    });
+  };
+
   if (error?.response?.status == 404)
     return <DefaultErrorPage statusCode={404} />;
   if (!candidate) return null;
   return (
     <>
       <NoLoginRedirect />
+      <AlreadyVoteRedirect />
       <Header />
       <Layout>
-        <header className="fixed z-30 w-full p-4 duration-300">
+        <header className="fixed z-30 w-full duration-300">
           <nav className="flex flex-row items-center justify-center align-middle">
-            <div className="relative w-full max-w-lg">
+            <div className="relative w-full max-w-lg bg-primary p-4">
               <div className="absolute left-0 ml-2">
                 <BackButton
                   onClick={choose ? () => setChoose(false) : undefined}
@@ -54,7 +69,10 @@ const CandidateDetail = ({ number }: Props) => {
 
             <CandidateChoose name={candidate.name} src={candidate.photo} />
             <div className="flex flex-col justify-center flex-grow w-full max-w-lg sm:px-12 py-2 space-y-4 flex-shrink-0">
-              <button className="p-3 text-lg font-bold text-center text-white transition-colors duration-700 transform rounded-lg shadow-md bg-primary hover:bg-gray-100 hover:text-primary">
+              <button
+                onClick={handleConfirm}
+                className="p-3 text-lg font-bold text-center text-white transition-colors duration-700 transform rounded-lg shadow-md bg-primary hover:bg-gray-100 hover:text-primary"
+              >
                 Konfirmasi
               </button>
               <button
@@ -116,10 +134,10 @@ const CandidateDetail = ({ number }: Props) => {
                 </Tab.List>
                 <Tab.Panels className="w-full">
                   <Tab.Panel>
-                    <CandidateAbout bio={candidate.bio} />
+                    <CandidateAbout {...candidate} />
                   </Tab.Panel>
                   <Tab.Panel>
-                    <CandidateSocmed />
+                    <CandidateSocmed {...candidate} />
                   </Tab.Panel>
                   {/* ... */}
                 </Tab.Panels>

@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import { toast } from "react-toastify";
@@ -15,14 +15,17 @@ type FormData = {
 };
 
 const Login: NextPage = () => {
+  const router = useRouter();
+  const { email } = router.query;
   const {
     register,
     handleSubmit,
     setError,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>();
+
   const queryClient = useQueryClient();
-  const router = useRouter();
   const { user } = useMe();
   const loggedIn = useRef(false);
   if (user) {
@@ -37,6 +40,11 @@ const Login: NextPage = () => {
     }
     router.push("/dashboard");
   }
+  useEffect(() => {
+    if (typeof email === "string") {
+      setValue("email", email);
+    }
+  }, [email, setValue]);
 
   const handleLogin: SubmitHandler<FormData> = async ({ email, password }) => {
     toast.loading("Loggin in....", {});

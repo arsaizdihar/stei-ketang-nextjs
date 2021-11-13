@@ -11,9 +11,22 @@ export interface UserType {
   };
 }
 
+export interface Detail {
+  number: number;
+  text: string;
+}
+
 export interface Candidate {
   number: number;
   photo: string;
   name: string;
   bio: string;
+  detail: {
+    visi: Detail[];
+    misi: Detail[];
+    program: Detail[];
+  };
+  instagram?: string;
+  linkedin?: string;
+  twitter?: string;
 }
