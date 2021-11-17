@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       <Header />
       <Layout>
         <div className="w-full">
-          <div className="px-6 py-6 h-1/2 bg-gradient-to-b from-primary to-tertiary flex flex-col justify-center">
+          <div className="px-6 py-6 bg-gradient-to-b from-primary to-tertiary flex flex-col justify-center h-full">
             {/* Title */}
             <div className="flex justify-center px-8 py-10">
               <p className="text-3xl sm:text-4xl font-semibold leading-10 text-center text-white">
@@ -30,15 +30,14 @@ const Home: NextPage = () => {
               </Link>
             </div>
           </div>
-          <div className="px-6 py-6 bg-white h-1/2 ">
-            {/* Title */}
+          {/* <div className="px-6 py-6 bg-white h-1/2 ">
             <div className="flex flex-col justify-center">
               <p className="py-4 text-lg font-semibold text-left text-primary">
                 Gallery
               </p>
               <div className="flex justify-center"></div>
             </div>
-          </div>
+          </div> */}
         </div>
       </Layout>
     </>

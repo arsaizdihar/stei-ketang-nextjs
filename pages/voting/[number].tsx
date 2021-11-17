@@ -16,6 +16,7 @@ import NoLoginRedirect from "../../src/components/other/NoLoginRedirect";
 import ProgressBar from "../../src/components/other/Progressbar";
 import useCandidate from "../../src/hooks/useCandidate";
 import { vote } from "../../src/utils/api";
+import { isVotingDay } from "../../src/utils/isVotingDay";
 interface Props {
   number: string;
 }
@@ -40,7 +41,7 @@ const CandidateDetail = ({ number }: Props) => {
     <>
       <NoLoginRedirect />
       <AlreadyVoteRedirect />
-      <Header />
+      <Header title={candidate?.name} />
       <Layout>
         <header className="fixed z-30 w-full duration-300">
           <nav className="flex flex-row items-center justify-center align-middle">
@@ -145,22 +146,24 @@ const CandidateDetail = ({ number }: Props) => {
             </div>
           </div>
         </Transition>
-        <Transition
-          as="div"
-          appear
-          show={!choose}
-          enter="transform transition duration-500 ease-in-out delay-500"
-          enterFrom="scale-0"
-          enterTo="scale-100"
-          className="fixed bottom-0 flex justify-center flex-grow w-full max-w-lg px-12 py-4"
-        >
-          <button
-            onClick={() => setChoose(true)}
-            className="flex-grow p-3 text-lg font-bold text-center text-white transition-colors duration-700 transform rounded-lg shadow-md bg-primary hover:bg-gray-100 hover:text-primary"
+        {isVotingDay() && (
+          <Transition
+            as="div"
+            appear
+            show={!choose}
+            enter="transform transition duration-500 ease-in-out delay-500"
+            enterFrom="scale-0"
+            enterTo="scale-100"
+            className="fixed bottom-0 flex justify-center flex-grow w-full max-w-lg px-12 py-4"
           >
-            COBLOS
-          </button>
-        </Transition>
+            <button
+              onClick={() => setChoose(true)}
+              className="flex-grow p-3 text-lg font-bold text-center text-white transition-colors duration-700 transform rounded-lg shadow-md bg-primary hover:bg-gray-100 hover:text-primary"
+            >
+              COBLOS
+            </button>
+          </Transition>
+        )}
       </Layout>
     </>
   );

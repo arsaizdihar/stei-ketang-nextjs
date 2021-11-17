@@ -8,6 +8,7 @@ import CandidateBox, {
   CandidateChosen,
 } from "../src/components/other/CandidateBox";
 import NoLoginRedirect from "../src/components/other/NoLoginRedirect";
+import agenda from "../src/constants/agenda.json";
 import useMe from "../src/hooks/useMe";
 
 const Home: NextPage = () => {
@@ -35,9 +36,15 @@ const Home: NextPage = () => {
           <div className="z-0 flex-grow px-6 py-6 -mt-12 space-y-6 bg-white">
             <h1 className="pt-4 text-4xl font-bold">Agenda</h1>
             <div className="space-y-4">
-              <AgendaComp content="Pemilihan dibuka" date="32 Feb" />
+              {agenda.map((a, idx) => {
+                const date = new Date(a.date);
+                if (date >= new Date()) {
+                  return <AgendaComp content={a.agenda} date={date} />;
+                }
+              })}
+              {/* <AgendaComp content="Pemilihan dibuka" date="32 Feb" />
               <AgendaComp content="Pemilihan ditutup" date="32 Feb" />
-              <AgendaComp content="Rekapitulasi suara" date="32 Feb" />
+              <AgendaComp content="Rekapitulasi suara" date="32 Feb" /> */}
             </div>
           </div>
         </div>
