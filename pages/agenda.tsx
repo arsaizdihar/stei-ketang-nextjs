@@ -34,7 +34,9 @@ const Agenda: NextPage = () => {
             </div>
 
             <div className="z-0 flex flex-col flex-grow px-6 py-6 space-y-6 bg-white rounded-lg">
-              <h3 className="font-bold text-xl">Tanggal-Tanggal Penting</h3>
+              <h3 className="font-bold text-lg sm:text-xl">
+                Tanggal-Tanggal Penting
+              </h3>
               {agenda.map((a, idx) => (
                 <AgendaComp
                   content={a.agenda}

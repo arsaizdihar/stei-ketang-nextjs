@@ -1,6 +1,10 @@
 import React from "react";
+import { isVotingDay } from "../../utils/isVotingDay";
 
 const ProgressBar: React.FC<{ number: 1 | 2 | 3 }> = ({ number }) => {
+  if (!isVotingDay()) {
+    return null;
+  }
   return (
     <div className="flex flex-row items-center justify-center align-middle">
       <div className="flex items-center justify-center w-8 h-8 border-2 border-white rounded-full ">

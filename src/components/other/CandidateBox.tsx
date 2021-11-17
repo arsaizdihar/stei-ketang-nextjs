@@ -9,11 +9,11 @@ const CandidateBox: React.FC<{}> = () => {
   const { data: candidates } = useCandidates();
   return (
     <div>
-      <div className="flex flex-col justify-center py-5 space-y-10">
+      {/* <div className="flex flex-col justify-center py-5 space-y-10">
         <p className="text-lg font-light tracking-wide text-white ">
           Berlangsung pada tanggal 27 Nov 2021
         </p>
-      </div>
+      </div> */}
       <div className="grid grid-cols-6">
         {candidates?.map((candidate, idx) => (
           <IconPicture

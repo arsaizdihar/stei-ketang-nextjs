@@ -20,7 +20,11 @@ const Voting: NextPage = () => {
       <Layout>
         <header className="fixed z-30 w-full duration-300">
           <nav className="flex flex-row items-center justify-center align-middle ">
-            <div className="relative w-full max-w-lg bg-primary p-4">
+            <div
+              className={`relative w-full max-w-lg ${
+                isVotingDay() ? "bg-primary" : ""
+              } p-4`}
+            >
               <div className="absolute left-0 ml-2">
                 <BackButton link="/dashboard" />
               </div>

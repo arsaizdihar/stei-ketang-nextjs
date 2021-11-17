@@ -19,7 +19,7 @@ const CandidateList: React.FC<{
     >
       <div>
         <Link href={`/voting/${number}`} passHref>
-          <a className="flex flex-col mx-2 my-4 text-lg bg-white rounded-lg w-32 sm:w-44 h-44 sm:h-60 hover:scale-105 duration-300 odd:last:col-span-2">
+          <a className="flex flex-col mx-2 my-4 text-lg bg-white rounded-lg w-36 sm:w-44 h-60 hover:scale-105 duration-300 odd:last:col-span-2">
             <div className="w-full h-full bg-gray-400 rounded-t-lg relative overflow-hidden">
               <Image
                 src={src ? src : "/avatar.jpg"}
@@ -28,7 +28,7 @@ const CandidateList: React.FC<{
                 className="object-cover"
               />
             </div>
-            <h2 className="py-2 text-base font-semibold text-center ">
+            <h2 className="py-2 text-sm sm:text-base font-semibold text-center ">
               {name}
             </h2>
           </a>

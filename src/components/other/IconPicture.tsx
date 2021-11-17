@@ -24,7 +24,7 @@ const IconPicture: React.FC<{
           src={`${src ? src : "/avatar.jpg"}`}
           alt={name}
           layout="fill"
-          className="z-10 rounded-full"
+          className="z-10 rounded-full object-cover"
         />
       </div>
       {name && (

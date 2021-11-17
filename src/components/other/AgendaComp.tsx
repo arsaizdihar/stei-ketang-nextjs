@@ -6,7 +6,7 @@ const AgendaComp: React.FC<{
 }> = ({ content, date }) => {
   const passed = new Date().getDate() > date.getDate();
   return (
-    <div className="flex flex-row space-x-12 text-custom">
+    <div className="flex flex-row space-x-4 text-base sm:text-custom">
       <h2
         className={`${passed ? "text-gray-400" : "font-semibold"}`}
       >{`${date.getDate()} Nov`}</h2>
