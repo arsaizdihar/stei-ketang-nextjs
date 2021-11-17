@@ -38,8 +38,10 @@ const Home: NextPage = () => {
             <div className="space-y-4">
               {agenda.map((a, idx) => {
                 const date = new Date(a.date);
-                if (date >= new Date()) {
-                  return <AgendaComp content={a.agenda} date={date} />;
+                if (date.getDate() >= new Date().getDate()) {
+                  return (
+                    <AgendaComp content={a.agenda} date={date} key={idx} />
+                  );
                 }
               })}
               {/* <AgendaComp content="Pemilihan dibuka" date="32 Feb" />
