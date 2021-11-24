@@ -2,11 +2,12 @@ import Link from "next/link";
 import React from "react";
 import useCandidates from "../../hooks/useCandidates";
 import useMe from "../../hooks/useMe";
-import { isVotingDay } from "../../utils/isVotingDay";
+import useVotingStatus from "../../hooks/useVotingStatus";
 import IconPicture from "./IconPicture";
 
 const CandidateBox: React.FC<{}> = () => {
   const { data: candidates } = useCandidates();
+  const { data } = useVotingStatus();
   return (
     <div>
       {/* <div className="flex flex-col justify-center py-5 space-y-10">
@@ -25,11 +26,19 @@ const CandidateBox: React.FC<{}> = () => {
         ))}
       </div>
       <div className="flex flex-row justify-center">
-        <Link href="/voting">
-          <a className="z-10 p-3 pl-6 pr-6 text-xl font-bold transition-colors duration-700 transform bg-white rounded-lg shadow-md text-primary hover:bg-primary hover:text-white">
-            {isVotingDay() ? "Pilih Ketua Sekarang!" : "Lihat Profil Calon"}
-          </a>
-        </Link>
+        {data?.status === "done" ? (
+          <div className="z-10 p-3 pl-6 pr-6 text-xl font-bold transition-colors duration-700 transform bg-white rounded-lg shadow-md text-primary hover:bg-primary hover:text-white cursor-not-allowed">
+            Masa voting telah berakhir
+          </div>
+        ) : (
+          <Link href="/voting">
+            <a className="z-10 p-3 pl-6 pr-6 text-xl font-bold transition-colors duration-700 transform bg-white rounded-lg shadow-md text-primary hover:bg-primary hover:text-white">
+              {data?.status === "voting"
+                ? "Pilih Ketua Sekarang!"
+                : "Lihat Profil Calon"}
+            </a>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import React from "react";
-import { isVotingDay } from "../../utils/isVotingDay";
+import useVotingStatus from "../../hooks/useVotingStatus";
 
 const ProgressBar: React.FC<{ number: 1 | 2 | 3 }> = ({ number }) => {
-  if (!isVotingDay()) {
+  const { data } = useVotingStatus();
+  if (data?.status !== "voting") {
     return null;
   }
   return (

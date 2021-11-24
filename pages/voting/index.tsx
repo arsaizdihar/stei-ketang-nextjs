@@ -8,10 +8,11 @@ import CandidateList from "../../src/components/other/CandidateList";
 import NoLoginRedirect from "../../src/components/other/NoLoginRedirect";
 import ProgressBar from "../../src/components/other/Progressbar";
 import useCandidates from "../../src/hooks/useCandidates";
-import { isVotingDay } from "../../src/utils/isVotingDay";
+import useVotingStatus from "../../src/hooks/useVotingStatus";
 
 const Voting: NextPage = () => {
   const { data: candidates } = useCandidates();
+  const { data } = useVotingStatus();
   return (
     <>
       <NoLoginRedirect />
@@ -22,7 +23,7 @@ const Voting: NextPage = () => {
           <nav className="flex flex-row items-center justify-center align-middle ">
             <div
               className={`relative w-full max-w-lg ${
-                isVotingDay() ? "bg-primary" : ""
+                data?.status === "voting" ? "bg-primary" : ""
               } p-4`}
             >
               <div className="absolute left-0 ml-2">
@@ -35,7 +36,7 @@ const Voting: NextPage = () => {
 
         <div className="flex flex-col items-center w-full px-4 pt-20 bg-primary">
           <h2 className="text-4xl font-semibold text-white px-8 flex-shrink-0">
-            {isVotingDay()
+            {data?.status === "voting"
               ? "Pilih Calon Ketua Angkatan"
               : "Profil Calon Ketua Angkatan"}
           </h2>

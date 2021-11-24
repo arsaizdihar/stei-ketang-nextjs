@@ -15,8 +15,8 @@ import CandidateSocmed from "../../src/components/other/CSocmed";
 import NoLoginRedirect from "../../src/components/other/NoLoginRedirect";
 import ProgressBar from "../../src/components/other/Progressbar";
 import useCandidate from "../../src/hooks/useCandidate";
+import useVotingStatus from "../../src/hooks/useVotingStatus";
 import { vote } from "../../src/utils/api";
-import { isVotingDay } from "../../src/utils/isVotingDay";
 interface Props {
   number: string;
 }
@@ -25,6 +25,7 @@ const CandidateDetail = ({ number }: Props) => {
   const queryClient = useQueryClient();
 
   const [choose, setChoose] = useState(false);
+  const { data } = useVotingStatus();
   const router = useRouter();
 
   const handleConfirm = () => {
@@ -47,7 +48,7 @@ const CandidateDetail = ({ number }: Props) => {
           <nav className="flex flex-row items-center justify-center align-middle">
             <div
               className={`relative w-full max-w-lg ${
-                isVotingDay() ? "bg-primary" : ""
+                data?.status === "voting" ? "bg-primary" : ""
               } p-4`}
             >
               <div className="absolute left-0 ml-2">
@@ -150,7 +151,7 @@ const CandidateDetail = ({ number }: Props) => {
             </div>
           </div>
         </Transition>
-        {isVotingDay() && (
+        {data?.status === "voting" && (
           <Transition
             as="div"
             appear
