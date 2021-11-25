@@ -5,7 +5,7 @@ import { fetchWithToken } from "../utils/fetchWithToken";
 const useVotingStatus = () => {
   const query = useQuery<{ status: string }, AxiosError>(
     "voting-status",
-    () => fetchWithToken(`vote/status`),
+    () => fetchWithToken(`vote/status/`),
     {
       retry(failureCount, error) {
         const status = error?.response?.status;

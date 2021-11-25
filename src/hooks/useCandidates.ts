@@ -6,7 +6,7 @@ import { fetchWithToken } from "../utils/fetchWithToken";
 const useCandidates = () => {
   const query = useQuery<Candidate[], AxiosError>(
     "candidates",
-    () => fetchWithToken(`candidates`),
+    () => fetchWithToken(`candidates/`),
     {
       retry(failureCount, error) {
         const status = error?.response?.status;
