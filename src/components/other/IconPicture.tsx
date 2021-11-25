@@ -19,7 +19,10 @@ const IconPicture: React.FC<{
     <div
       className={`z-10 px-2 my-2 text-center duration-300 hover:scale-125 ${colSpan}`}
     >
-      <div className="relative w-24 h-24 mx-auto">
+      <div className="relative w-24 h-24 mx-auto bg-gray-500 rounded-full">
+        {/* <div className="absolute inset-0 w-full h-full flex justify-center items-center">
+          <p>{name}</p>
+        </div> */}
         <Image
           src={`${src ? src : "/avatar.jpg"}`}
           alt={name}

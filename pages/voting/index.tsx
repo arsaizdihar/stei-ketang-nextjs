@@ -11,7 +11,7 @@ import useCandidates from "../../src/hooks/useCandidates";
 import useVotingStatus from "../../src/hooks/useVotingStatus";
 
 const Voting: NextPage = () => {
-  const { data: candidates } = useCandidates();
+  const { data: candidates, isLoading } = useCandidates();
   const { data } = useVotingStatus();
   return (
     <>
@@ -40,6 +40,11 @@ const Voting: NextPage = () => {
               ? "Pilih Calon Ketua Angkatan"
               : "Profil Calon Ketua Angkatan"}
           </h2>
+          {isLoading && (
+            <div className="my-4">
+              <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
+            </div>
+          )}
 
           <div className="grid grid-cols-2 py-4 overflow-hidden w-full justify-items-center items-center px-4 flex-grow">
             {candidates?.map((candidate, idx) => (
