@@ -4,9 +4,11 @@ import { Candidate } from "../../ts/types";
 const CandidateAbout: React.FC<Candidate> = ({ bio, detail }) => {
   return (
     <div className="flex flex-col flex-grow w-full h-full pb-12 space-y-6 text-primary">
-      <div className="space-y-2">
-        <h2 className="flex justify-start text-2xl font-bold">Profil</h2>
-        <p className="flex justify-start text-primary">{bio}</p>
+      <div className="space-y-2 text-primary">
+        <h2 className="flex justify-start text-2xl font-bold text-black">
+          Profil
+        </h2>
+        <div dangerouslySetInnerHTML={{ __html: bio }}></div>
       </div>
       <div className="space-y-2">
         <h2 className="flex justify-start text-2xl font-bold">Visi</h2>
