@@ -33,7 +33,7 @@ const CandidateAbout: React.FC<Candidate> = ({ bio, detail }) => {
             {detail.program.map((d) => (
               <li key={d.number}>
                 <p>{d.text}</p>
-                <p>{d.desc}</p>
+                <div dangerouslySetInnerHTML={{ __html: d.desc || "" }}></div>
               </li>
             ))}
           </ol>
