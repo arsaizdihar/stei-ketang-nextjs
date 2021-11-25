@@ -14,6 +14,7 @@ export interface UserType {
 export interface Detail {
   number: number;
   text: string;
+  desc?: string;
 }
 
 export interface Candidate {
