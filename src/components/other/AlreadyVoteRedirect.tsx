@@ -5,10 +5,13 @@ import useMe from "../../hooks/useMe";
 
 const toastId = "vote";
 
-const AlreadyVoteRedirect: React.FC = ({ children }) => {
+const AlreadyVoteRedirect: React.FC<{ disable?: boolean }> = ({
+  children,
+  disable,
+}) => {
   const router = useRouter();
   const { user } = useMe();
-  if (user?.vote) {
+  if (!disable && user?.vote) {
     toast.warn("Kamu sudah vote.", { toastId });
     router.push("/dashboard");
   }

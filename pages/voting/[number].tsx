@@ -27,9 +27,11 @@ const CandidateDetail = ({ number }: Props) => {
   const [choose, setChoose] = useState(false);
   const { data } = useVotingStatus();
   const router = useRouter();
+  const [isVoting, setIsVoting] = useState(false);
 
   const handleConfirm = () => {
     vote(number).then(() => {
+      setIsVoting(true);
       queryClient.refetchQueries("me");
       router.push("/voting/done");
     });
@@ -41,7 +43,7 @@ const CandidateDetail = ({ number }: Props) => {
   return (
     <>
       <NoLoginRedirect />
-      <AlreadyVoteRedirect />
+      <AlreadyVoteRedirect disable={isVoting} />
       <Header title={candidate?.name} />
       <Layout>
         <header className="fixed z-30 w-full duration-300">
