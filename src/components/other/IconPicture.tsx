@@ -8,7 +8,7 @@ const IconPicture: React.FC<{
   src?: string;
 }> = ({ name, src, count, idx }) => {
   let colSpan = "col-span-2";
-  if (count && idx) {
+  if (count && idx !== undefined) {
     if (count % 3 === 2 && idx > count - 3) {
       colSpan = "col-span-3";
     } else if (count % 3 === 1 && idx === count - 1) {
